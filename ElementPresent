@@ -1,0 +1,52 @@
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Elementpresent {
+
+	static WebDriver driver;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		boolean isPresent;
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.seleniumtutor.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		isPresent = isElementPresent(By.id("s"));
+		System.out.println(isPresent);
+		isPresent = isElementPresent(By.id("s4444"));
+		System.out.println(isPresent);
+		List<WebElement> elementPresent = driver.findElements(By.id("s"));
+		List<WebElement> elementNot = driver.findElements(By.id("sfggffff"));
+		isPresent = isElementPresent2(elementPresent);
+		System.out
+				.println("is Element visible on page using List " + isPresent);
+		isPresent = isElementPresent2(elementNot);
+		System.out.println("is Element visible on page using List :"
+				+ isPresent);
+		driver.quit();
+
+	}
+protected static boolean isElementPresent(By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	protected static boolean isElementPresent2(List<WebElement> listElement) {
+		if (listElement.size() != 0)
+			return true;
+		else
+			return false;
+	}
+
+}
