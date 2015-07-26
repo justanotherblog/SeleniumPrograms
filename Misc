@@ -1,0 +1,106 @@
+1.Code to check all checkbox in a given page?
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class CheckBox {
+
+  public static void main(String[] args) {
+    // TODO Auto-generated method stub
+
+    WebDriver driver = new FirefoxDriver();
+    driver.manage().window().maximize();
+    driver.get("http://browsershots.org/");
+    List<WebElement> check = driver.findElements(By.cssSelector("input[type='checkbox']"));
+
+    int numb = check.size();
+    for (int i = 1; i < numb; i++) {
+      if (!check.get(i).isSelected()) {
+        check.get(i).click();
+      }
+    }
+    driver.quit();
+  }
+}
+
+2.Right click 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class RightClick {
+
+  public static void main(String[] args) {
+    // TODO Auto-generated method stub
+    WebDriver driver = new FirefoxDriver();
+    driver.manage().window().maximize();
+    driver.get("http://browsershots.org/");
+    WebElement a = driver.findElement(By.id("url"));
+    Actions act=new Actions(driver);
+    act.contextClick(a).perform();
+  }
+
+}
+
+3.Remove duplicate string in an Array
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Duplicate {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String[] myList = { "java", "c", "c++", "java", "sql", "c++" };
+		// String dup=myList[0];
+		// StringBuffer buffer=new StringBuffer();
+		int duplicate = 0;
+		String[] sc = myList.clone();
+		for (int i = 0; i < myList.length; i++)
+			for (int j = i + 1; j < sc.length; j++)
+				if ((myList[i] == sc[j]) && (myList[i] != "NULL")) {
+					duplicate++;
+					myList[i] = "";
+				}
+		System.out.println("Total duplicates - " + duplicate);
+		for (String string : myList) {
+			System.out.print(" " + string);
+		}
+		// 2nd method
+		Set<String> se = new HashSet<String>(Arrays.asList(sc));
+		System.out.println(se);
+
+	}
+}
+
+4.Second greatest number in given Array
+public class Second {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int temp;
+		int[] a = { 5, 34, 78, 2, 45, 1, 99, 23 };
+		System.out.print("Before sorting, numbers are ");
+		for (int i = 0; i < a.length; i++) {
+			System.out.println(a[i] + " ");
+		}
+		for (int i = 0; i < a.length; i++) {
+			for (int j = i + 1; j < a.length; j++) {
+				if (a[i] < a[j]) {
+					temp = a[i];
+					a[i] = a[j];
+					a[j] = temp;
+
+				}
+			}
+		}
+
+		System.out.println("sorted Array: " + a[1]);
+
+	}
+
+}
