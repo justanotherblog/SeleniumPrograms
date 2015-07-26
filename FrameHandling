@@ -1,0 +1,39 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
+
+public class Frames {
+  WebDriver driver;
+  
+  @BeforeMethod
+  public void beforeMethod() {
+    driver=new FirefoxDriver();
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.navigate().to("https://netbanking.hdfcbank.com/netbanking/");
+  }
+  
+  
+  @Test
+  public void f() {
+   
+
+  
+   driver.switchTo().frame("login_page");
+   WebElement a = driver.findElement(By.cssSelector(".pwd_field input"));
+   a.sendKeys("67890");
+    driver.findElement(By.xpath("//img[@alt='continue']")).click();
+  }
+
+  @AfterMethod
+  public void afterMethod() {
+    
+    driver.close();
+  }
+
+}
